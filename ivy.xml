@@ -31,7 +31,7 @@
         <dependency org="javax.xml.bind" name="jaxb-api" rev="2.2.11"/>
         <dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.2.7"/>
         <dependency org="com.sun.xml.bind" name="jaxb-xjc" rev="2.2.7"/>
-        <dependency org="xerces" name="xercesImpl" rev="2.8.0"/>
+        
         <dependency org="org.glassfish.jersey.media" name="jersey-media-json-jackson" rev="2.24"/>
         <dependency org="org.glassfish.jersey.core" name="jersey-client" rev="2.24"/>
 	

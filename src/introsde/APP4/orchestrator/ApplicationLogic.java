@@ -8,6 +8,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import introsde.APP4.orchestrator.openweather.OpenWeatherMap;
 import introsde.APP4.orchestrator.wsdl.app1parks.Park;
 import introsde.APP4.orchestrator.wsdl.app1parks.ParkImplService;
 import introsde.APP4.orchestrator.wsdl.app1parks.ParkWebService;
@@ -100,10 +101,12 @@ public class ApplicationLogic {
 
 	public void postReview(Integer userId, Review review) {
 		review.setDate(getCurrentDateAsXMLCalendar());
+		OpenWeatherMap map = new OpenWeatherMap();
+		review.setWeather(map.getWeatherNow());
 		ws3.addReview(review, userId);
 	}
 	
-	public void assVisitedPlace(Integer userId, PlaceVisited place) {
+	public void addVisitedPlace(Integer userId, PlaceVisited place) {
 		place.setDate(getCurrentDateAsXMLCalendar());
 		ws3.addPlaceVisited(place, userId);
 	}
@@ -115,12 +118,44 @@ public class ApplicationLogic {
 	public List<PlaceVisited> getParkVisits(Integer parkID) {
 		return ws3.getPlacesVisitedOfPark(parkID);
 	}
+
+	public Double getParkLikePercent(Integer parkID) {
+		List<PlaceVisited> visits = getParkVisits(parkID);
+		if( visits.size() == 0 ) {
+			return 0.0;
+		}
+		Double rating = 0.0;
+		for(PlaceVisited visit : visits) {
+			rating += visit.getVote();
+		}
+		rating = rating/visits.size();
+		return rating;
+	}
 	
 	public List<Review> getShedReviews(Integer shedID) {
 		return ws3.getReviewsOfShed(shedID);
 	}
 	
+	public List<PlaceVisited> getShedVisits(Integer shedID) {
+		return ws3.getPlacesVisitedOfShed(shedID);
+	}
+	
+	public Double getShedLikePercent(Integer shedID) {
+		List<PlaceVisited> visits = getShedVisits(shedID);
+		if( visits.size() == 0 ) {
+			return 0.0;
+		}
+		Double rating = 0.0;
+		for(PlaceVisited visit : visits) {
+			rating += visit.getVote();
+		}
+		rating = rating/visits.size();
+		return rating;
+	}
+	
 	public List<Review> getUserReviews(Integer userID) {
 		return ws3.getReviewsOfUser(userID);
 	}
+	
+	
 }

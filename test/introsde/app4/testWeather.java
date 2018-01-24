@@ -39,5 +39,10 @@ public class testWeather {
 		assertNotNull(map.getOkWeatherTomorrow());
 		System.out.println("Tomorrow is safe: "+map.getOkWeatherTomorrow());
 	}
+	
+	@Test
+	public void testWeatherNow() {
+		assertNotNull(map.getWeatherNow());
+	}
 
 }

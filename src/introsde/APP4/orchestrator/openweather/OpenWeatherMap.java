@@ -40,6 +40,14 @@ public class OpenWeatherMap {
 		return string;
 	}
 	
+	public String getWeatherNow() {
+		String string = "";
+		for (Weather weather : getNowForecast().getWeather()) {
+			string += weather.getMain()+" ";
+		}
+		return string;
+	}
+	
 	public Boolean getOkWeatherTomorrow() {
 		for (Weather weather : getTomorrowForecast().getWeather()) {
 			if (
@@ -54,6 +62,11 @@ public class OpenWeatherMap {
 		return true;
 	}
 	
+	public introsde.APP4.orchestrator.openweather.entities.List getNowForecast() {
+		if(data == null) getForecast();
+		return data.getList().get(0);
+	}
+	
 	public introsde.APP4.orchestrator.openweather.entities.List getTomorrowForecast() {
 		if(data == null) getForecast();
 
@@ -66,7 +79,7 @@ public class OpenWeatherMap {
 		}
 		return null;
 	}
-
+	
 	private Date getTomorrow(Integer hour) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());

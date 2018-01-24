@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.runners.MethodSorters;
 
 import introsde.APP4.orchestrator.ApplicationLogic;
+import introsde.APP4.orchestrator.wsdl.app3user.PlaceVisited;
 import introsde.APP4.orchestrator.wsdl.app3user.Review;
 import introsde.APP4.orchestrator.wsdl.app3user.User;
 
@@ -55,7 +56,7 @@ public class UserLogicTest {
 		Review review = new Review();
 		review.setReview("Test Review");
 		review.setVote(4);
-		Integer parkReviewed = new Random().nextInt(10) + 1;
+		Integer parkReviewed = new Random().nextInt(20) + 1;
 		review.setIdPark(parkReviewed);
 		
 		int n = al.getParkReviews(parkReviewed).size();
@@ -66,6 +67,23 @@ public class UserLogicTest {
 		
 		int z = al.getUserReviews(givenId).size();
 		assertEquals((int)1, z);
+	}
+	
+	@Test
+	public void test05SubmitVisits() {
+		PlaceVisited visit = new PlaceVisited();
+		Integer parkVisited = new Random().nextInt(20) + 1;
+		visit.setIdPark(parkVisited);
+		visit.setVote(1);
+		
+		int n = al.getParkVisits(parkVisited).size();
+		double nn = al.getParkLikePercent(parkVisited);
+		al.addVisitedPlace(givenId, visit);
+		
+		int m = al.getParkVisits(parkVisited).size();
+		double mm = al.getParkLikePercent(parkVisited);
+		assertTrue( (m == n+1) ); 
+		assertTrue( (mm >= nn) ); 
 	}
 	
 	@Test(expected = com.sun.xml.ws.fault.ServerSOAPFaultException.class)

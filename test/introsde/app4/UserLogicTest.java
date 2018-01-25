@@ -8,6 +8,8 @@ import org.junit.BeforeClass;
 import org.junit.runners.MethodSorters;
 
 import introsde.APP4.orchestrator.ApplicationLogic;
+import introsde.APP4.orchestrator.entities.SuggestedItem;
+import introsde.APP4.orchestrator.entities.Suggestion;
 import introsde.APP4.orchestrator.wsdl.app3user.PlaceVisited;
 import introsde.APP4.orchestrator.wsdl.app3user.Review;
 import introsde.APP4.orchestrator.wsdl.app3user.User;
@@ -18,7 +20,7 @@ import org.junit.FixMethodOrder;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserLogicTest {
 
-	private static Integer givenId;
+	private static Integer userID;
 	private static User generatedUser;
 	private static ApplicationLogic al;
 	@BeforeClass
@@ -32,23 +34,23 @@ public class UserLogicTest {
 		generatedUser.setFirstName("TEST USER");
 		generatedUser.setUsername("TEST USERNAME");
 		
-		givenId = al.registerUser(generatedUser);
-		assertNotEquals((int)0, (int)givenId);
+		userID = al.registerUser(generatedUser);
+		assertNotEquals((int)0, (int)userID);
 	}
 	
 	@Test
 	public void test02CanGetUser() {
-		User retrievedUser = al.getUser(givenId);
+		User retrievedUser = al.getUser(userID);
 		assertEquals(generatedUser.getFirstName(), retrievedUser.getFirstName());
 		assertEquals(generatedUser.getUsername(), retrievedUser.getUsername());
 	}
 	
 	@Test
 	public void test03UpdateUserPreferences() {
-		al.setUserPreference(givenId, true, false);
+		al.setUserPreference(userID, true, false);
 		
-		assertTrue(al.doesUserPreferParks(givenId));
-		assertFalse(al.doesUserPreferSheds(givenId));
+		assertTrue(al.doesUserPreferParks(userID));
+		assertFalse(al.doesUserPreferSheds(userID));
 	}
 	
 	@Test
@@ -60,12 +62,12 @@ public class UserLogicTest {
 		review.setIdPark(parkReviewed);
 		
 		int n = al.getParkReviews(parkReviewed).size();
-		al.postReview(givenId,review);
+		al.postReview(userID,review);
 		
 		int m = al.getParkReviews(parkReviewed).size();
 		assertTrue( (m == n+1) ); 
 		
-		int z = al.getUserReviews(givenId).size();
+		int z = al.getUserReviews(userID).size();
 		assertEquals((int)1, z);
 	}
 	
@@ -78,7 +80,7 @@ public class UserLogicTest {
 		
 		int n = al.getParkVisits(parkVisited).size();
 		double nn = al.getParkLikePercent(parkVisited);
-		al.addVisitedPlace(givenId, visit);
+		al.addVisitedPlace(userID, visit);
 		
 		int m = al.getParkVisits(parkVisited).size();
 		double mm = al.getParkLikePercent(parkVisited);
@@ -86,10 +88,28 @@ public class UserLogicTest {
 		assertTrue( (mm >= nn) ); 
 	}
 	
+	@Test
+	public void test06GetSuggestion() {
+		Suggestion suggestion = al.getUserSuggestions(userID);
+		assertNotNull(suggestion);
+		System.out.println(suggestion.getMessage());
+		
+		for (SuggestedItem item : suggestion.getSuggestedItems()) {
+			if(item.getPark() != null) {
+				assertNotNull(item.getPark());
+				System.out.println("Suggested PARK "+item.getPark().getParco());
+			}
+			else {
+				assertNotNull(item.getShed());
+				System.out.println("Suggested SHED "+item.getShed().getNome());
+			}
+		}
+	}
+	
 	@Test(expected = com.sun.xml.ws.fault.ServerSOAPFaultException.class)
 	public void test09DeleteUser() {
-		al.deleteUser(givenId);
-		al.getUser(givenId);
+		al.deleteUser(userID);
+		al.getUser(userID);
 	}
 
 }

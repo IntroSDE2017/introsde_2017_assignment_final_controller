@@ -48,7 +48,6 @@ public class ObjectFactory {
     private final static QName _DeleteUserById_QNAME = new QName("http://soap.users.APP3.introsde/", "deleteUserById");
     private final static QName _GetReviewByIdResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewByIdResponse");
     private final static QName _UpdatePlaceVisitedResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "updatePlaceVisitedResponse");
-    private final static QName _GetHelloWorldAsString_QNAME = new QName("http://soap.users.APP3.introsde/", "getHelloWorldAsString");
     private final static QName _GetReviewsOfUser_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewsOfUser");
     private final static QName _GetReviewsOfShedResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewsOfShedResponse");
     private final static QName _GetUserById_QNAME = new QName("http://soap.users.APP3.introsde/", "getUserById");
@@ -60,7 +59,7 @@ public class ObjectFactory {
     private final static QName _AddPlaceVisitedResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "addPlaceVisitedResponse");
     private final static QName _GetUserList_QNAME = new QName("http://soap.users.APP3.introsde/", "getUserList");
     private final static QName _SetUserPreference_QNAME = new QName("http://soap.users.APP3.introsde/", "setUserPreference");
-    private final static QName _GetHelloWorldAsStringResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getHelloWorldAsStringResponse");
+    private final static QName _GetMostRankedVisitsResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getMostRankedVisitsResponse");
     private final static QName _GetPlacesVisitedOfUserResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getPlacesVisitedOfUserResponse");
     private final static QName _UserPreferShedsResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "userPreferShedsResponse");
     private final static QName _GetReviewsOfParkResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewsOfParkResponse");
@@ -69,6 +68,7 @@ public class ObjectFactory {
     private final static QName _GetPlacesVisitedOfPark_QNAME = new QName("http://soap.users.APP3.introsde/", "getPlacesVisitedOfPark");
     private final static QName _UpdateUserResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "updateUserResponse");
     private final static QName _AddReview_QNAME = new QName("http://soap.users.APP3.introsde/", "addReview");
+    private final static QName _GetMostRankedVisits_QNAME = new QName("http://soap.users.APP3.introsde/", "getMostRankedVisits");
     private final static QName _UserPreferParksResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "userPreferParksResponse");
 
     /**
@@ -76,14 +76,6 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link GetHelloWorldAsString }
-     * 
-     */
-    public GetHelloWorldAsString createGetHelloWorldAsString() {
-        return new GetHelloWorldAsString();
     }
 
     /**
@@ -175,11 +167,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetHelloWorldAsStringResponse }
+     * Create an instance of {@link GetMostRankedVisitsResponse }
      * 
      */
-    public GetHelloWorldAsStringResponse createGetHelloWorldAsStringResponse() {
-        return new GetHelloWorldAsStringResponse();
+    public GetMostRankedVisitsResponse createGetMostRankedVisitsResponse() {
+        return new GetMostRankedVisitsResponse();
     }
 
     /**
@@ -244,6 +236,14 @@ public class ObjectFactory {
      */
     public AddReview createAddReview() {
         return new AddReview();
+    }
+
+    /**
+     * Create an instance of {@link GetMostRankedVisits }
+     * 
+     */
+    public GetMostRankedVisits createGetMostRankedVisits() {
+        return new GetMostRankedVisits();
     }
 
     /**
@@ -471,6 +471,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RankedVisit }
+     * 
+     */
+    public RankedVisit createRankedVisit() {
+        return new RankedVisit();
+    }
+
+    /**
      * Create an instance of {@link User }
      * 
      */
@@ -695,15 +703,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetHelloWorldAsString }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "getHelloWorldAsString")
-    public JAXBElement<GetHelloWorldAsString> createGetHelloWorldAsString(GetHelloWorldAsString value) {
-        return new JAXBElement<GetHelloWorldAsString>(_GetHelloWorldAsString_QNAME, GetHelloWorldAsString.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetReviewsOfUser }{@code >}}
      * 
      */
@@ -803,12 +802,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetHelloWorldAsStringResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMostRankedVisitsResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "getHelloWorldAsStringResponse")
-    public JAXBElement<GetHelloWorldAsStringResponse> createGetHelloWorldAsStringResponse(GetHelloWorldAsStringResponse value) {
-        return new JAXBElement<GetHelloWorldAsStringResponse>(_GetHelloWorldAsStringResponse_QNAME, GetHelloWorldAsStringResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "getMostRankedVisitsResponse")
+    public JAXBElement<GetMostRankedVisitsResponse> createGetMostRankedVisitsResponse(GetMostRankedVisitsResponse value) {
+        return new JAXBElement<GetMostRankedVisitsResponse>(_GetMostRankedVisitsResponse_QNAME, GetMostRankedVisitsResponse.class, null, value);
     }
 
     /**
@@ -881,6 +880,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "addReview")
     public JAXBElement<AddReview> createAddReview(AddReview value) {
         return new JAXBElement<AddReview>(_AddReview_QNAME, AddReview.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMostRankedVisits }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "getMostRankedVisits")
+    public JAXBElement<GetMostRankedVisits> createGetMostRankedVisits(GetMostRankedVisits value) {
+        return new JAXBElement<GetMostRankedVisits>(_GetMostRankedVisits_QNAME, GetMostRankedVisits.class, null, value);
     }
 
     /**

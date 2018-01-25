@@ -32,6 +32,22 @@ public class OpenWeatherMap {
 		return getTomorrowForecast().getRain().get3h();
 	}
 	
+	public boolean isRainTomorrow() {
+		return getTomorrowForecast().getRain()!=null;
+	}
+	
+	public Double getSnowTomorrow() {
+		return getTomorrowForecast().getSnow().get3h();
+	}
+	
+	public boolean isSnowTomorrow() {
+		return getTomorrowForecast().getSnow()!=null;
+	}
+	
+	public Double getWindTomorrow() {
+		return getTomorrowForecast().getWind().getSpeed();
+	}
+	
 	public String getWeatherTomorrow() {
 		String string = "";
 		for (Weather weather : getTomorrowForecast().getWeather()) {

@@ -29,33 +29,6 @@ public interface UserWebService {
      * 
      * @param arg0
      * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getHelloWorldAsString", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetHelloWorldAsString")
-    @ResponseWrapper(localName = "getHelloWorldAsStringResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetHelloWorldAsStringResponse")
-    @Action(input = "http://soap.users.APP3.introsde/UserWebService/getHelloWorldAsStringRequest", output = "http://soap.users.APP3.introsde/UserWebService/getHelloWorldAsStringResponse")
-    public String getHelloWorldAsString(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "deleteUserById", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.DeleteUserById")
-    @ResponseWrapper(localName = "deleteUserByIdResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.DeleteUserByIdResponse")
-    @Action(input = "http://soap.users.APP3.introsde/UserWebService/deleteUserByIdRequest", output = "http://soap.users.APP3.introsde/UserWebService/deleteUserByIdResponse")
-    public void deleteUserById(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
      *     returns introsde.APP4.orchestrator.wsdl.app3user.User
      */
     @WebMethod
@@ -75,12 +48,24 @@ public interface UserWebService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addUser", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.AddUser")
-    @ResponseWrapper(localName = "addUserResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.AddUserResponse")
-    @Action(input = "http://soap.users.APP3.introsde/UserWebService/addUserRequest", output = "http://soap.users.APP3.introsde/UserWebService/addUserResponse")
-    public User addUser(
+    @RequestWrapper(localName = "getUserById", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetUserById")
+    @ResponseWrapper(localName = "getUserByIdResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetUserByIdResponse")
+    @Action(input = "http://soap.users.APP3.introsde/UserWebService/getUserByIdRequest", output = "http://soap.users.APP3.introsde/UserWebService/getUserByIdResponse")
+    public User getUserById(
         @WebParam(name = "arg0", targetNamespace = "")
-        User arg0);
+        Integer arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deleteUserById", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.DeleteUserById")
+    @ResponseWrapper(localName = "deleteUserByIdResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.DeleteUserByIdResponse")
+    @Action(input = "http://soap.users.APP3.introsde/UserWebService/deleteUserByIdRequest", output = "http://soap.users.APP3.introsde/UserWebService/deleteUserByIdResponse")
+    public void deleteUserById(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Integer arg0);
 
     /**
      * 
@@ -102,12 +87,12 @@ public interface UserWebService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getUserById", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetUserById")
-    @ResponseWrapper(localName = "getUserByIdResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetUserByIdResponse")
-    @Action(input = "http://soap.users.APP3.introsde/UserWebService/getUserByIdRequest", output = "http://soap.users.APP3.introsde/UserWebService/getUserByIdResponse")
-    public User getUserById(
+    @RequestWrapper(localName = "addUser", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.AddUser")
+    @ResponseWrapper(localName = "addUserResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.AddUserResponse")
+    @Action(input = "http://soap.users.APP3.introsde/UserWebService/addUserRequest", output = "http://soap.users.APP3.introsde/UserWebService/addUserResponse")
+    public User addUser(
         @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0);
+        User arg0);
 
     /**
      * 
@@ -360,5 +345,17 @@ public interface UserWebService {
         boolean arg1,
         @WebParam(name = "arg2", targetNamespace = "")
         boolean arg2);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<introsde.APP4.orchestrator.wsdl.app3user.RankedVisit>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMostRankedVisits", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetMostRankedVisits")
+    @ResponseWrapper(localName = "getMostRankedVisitsResponse", targetNamespace = "http://soap.users.APP3.introsde/", className = "introsde.APP4.orchestrator.wsdl.app3user.GetMostRankedVisitsResponse")
+    @Action(input = "http://soap.users.APP3.introsde/UserWebService/getMostRankedVisitsRequest", output = "http://soap.users.APP3.introsde/UserWebService/getMostRankedVisitsResponse")
+    public List<RankedVisit> getMostRankedVisits();
 
 }

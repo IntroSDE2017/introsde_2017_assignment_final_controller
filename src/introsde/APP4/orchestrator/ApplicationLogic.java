@@ -1,13 +1,17 @@
 package introsde.APP4.orchestrator;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import introsde.APP4.orchestrator.entities.SuggestedItem;
+import introsde.APP4.orchestrator.entities.Suggestion;
 import introsde.APP4.orchestrator.openweather.OpenWeatherMap;
 import introsde.APP4.orchestrator.wsdl.app1parks.Park;
 import introsde.APP4.orchestrator.wsdl.app1parks.ParkImplService;
@@ -16,6 +20,7 @@ import introsde.APP4.orchestrator.wsdl.app2shed.Shed;
 import introsde.APP4.orchestrator.wsdl.app2shed.ShedImplService;
 import introsde.APP4.orchestrator.wsdl.app2shed.ShedWebService;
 import introsde.APP4.orchestrator.wsdl.app3user.PlaceVisited;
+import introsde.APP4.orchestrator.wsdl.app3user.RankedVisit;
 import introsde.APP4.orchestrator.wsdl.app3user.Review;
 import introsde.APP4.orchestrator.wsdl.app3user.User;
 import introsde.APP4.orchestrator.wsdl.app3user.UserImplService;
@@ -157,5 +162,77 @@ public class ApplicationLogic {
 		return ws3.getReviewsOfUser(userID);
 	}
 	
-	
+	public Suggestion getUserSuggestions(Integer userID) {
+		User user = getUser(userID);															//Select the current user
+		Suggestion suggestion = new Suggestion();
+		suggestion.setMessage(getWeatherBasedMessage());												//Setting the weather message
+		suggestion.setSuggestedItems(new ArrayList<SuggestedItem>());
+		int randomChanceToSelectParks = (user.getPreference().isPreferenceParks()) ? 50 : 20;			//Load his preferences
+		int randomChanceToSelectSheds = (user.getPreference().isPreferenceSheds()) ? 50 : 20;			//More chance to select it's preferred type
+		int random = new Random().nextInt(randomChanceToSelectParks+randomChanceToSelectSheds) + 1;		//Get the random number
+		
+		SuggestedItem suggestion1 = new SuggestedItem();
+		if (random<=(randomChanceToSelectParks)) {														//Wins Parks
+			List<Park> parks = ws1.getParkList();
+			Park selectedPark = parks.get( new Random().nextInt(parks.size()) );
+			suggestion1.setPark(selectedPark);			
+		}
+		else {																							//Wins Sheds
+			List<Shed> sheds = ws2.getShedList();
+			Shed selectedShed = sheds.get( new Random().nextInt(sheds.size()) );
+			suggestion1.setShed(selectedShed);
+		}
+		suggestion.getSuggestedItems().add(suggestion1);
+		
+		SuggestedItem suggestion2 = new SuggestedItem();
+		SuggestedItem suggestion3 = new SuggestedItem();
+		List<RankedVisit> rankedVisits = ws3.getMostRankedVisits();
+		int secondRank = rankedVisits.get(1).getSum();
+		for (RankedVisit visit : rankedVisits) {
+			if (visit.getSum() < secondRank/2) {
+				rankedVisits.remove(visit);
+			}
+		}
+		RankedVisit visit1 = rankedVisits.get( new Random().nextInt(rankedVisits.size()) );
+		rankedVisits.remove(visit1);
+		RankedVisit visit2 = rankedVisits.get( new Random().nextInt(rankedVisits.size()) );
+		if(visit1.getIdPark()!=null) {
+			suggestion2.setPark( ws1.getParkById(visit1.getIdPark()));
+		}
+		else {
+			suggestion2.setShed( ws2.getShedById(visit1.getIdShed())); 
+		}
+		if(visit2.getIdPark()!=null) {
+			suggestion3.setPark( ws1.getParkById(visit2.getIdPark()));
+		}
+		else {
+			suggestion3.setShed( ws2.getShedById(visit2.getIdShed())); 
+		}
+		suggestion.getSuggestedItems().add(suggestion2);
+		suggestion.getSuggestedItems().add(suggestion3);
+		
+		return suggestion;
+	}
+
+	private String getWeatherBasedMessage() {
+		OpenWeatherMap map = new OpenWeatherMap();
+		String result = "";
+		if(map.getOkWeatherTomorrow()) {
+			result += "Tomorrow the weather is perfect! You might be interested in visiting these places!\n"
+					+ "Cloud coverage is expected to be " + map.getCloudCoverageTomorrow();
+		}
+		else {
+			result += "Tomorrow the weather is " + map.getWeatherTomorrow() + " you might still be interested in planning a visit to these locations./n";
+			if(map.isRainTomorrow()) {
+				result += "Tomorrow morning it is expected to rain " + map.getRainTomorrow() + "mm... Dress UP!";
+			}
+			else if (map.isSnowTomorrow()) {
+				result += "Tomorrow morning it is expected to snow " + map.getSnowTomorrow() + "mm... Better Stay safe for few days.";
+			}
+			else {
+				result += "There is no rain expected tomorrow, but the clouds will cover " + map.getCloudCoverageTomorrow() + "% of the sky and the wind will blow " + map.getWindTomorrow() + " m/s";
+			}
+		}
+		return result;
+	}
 }

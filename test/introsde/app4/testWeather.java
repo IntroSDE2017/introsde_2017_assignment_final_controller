@@ -41,6 +41,11 @@ public class testWeather {
 	}
 	
 	@Test
+	public void testWindTomorrow() {
+		assertNotNull(map.getWindTomorrow());
+	}
+	
+	@Test
 	public void testWeatherNow() {
 		assertNotNull(map.getWeatherNow());
 	}

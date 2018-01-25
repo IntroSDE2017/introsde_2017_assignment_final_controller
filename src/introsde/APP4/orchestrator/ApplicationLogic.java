@@ -69,8 +69,16 @@ public class ApplicationLogic {
         return addedUser.getId();
 	}
 	
+	public List<User> getAllUsers() {
+		return ws3.getUserList();
+	}
+	
 	public User getUser(Integer id) {
 		return ws3.getUserById(id);
+	}
+
+	public List<User> getUserByName(String name) {
+		return ws3.getUserByName(name);
 	}
 
 	public void deleteUser(Integer givenId) {
@@ -96,13 +104,21 @@ public class ApplicationLogic {
 	public Park getParkByID(Integer parkID) {
 		return ws1.getParkById(parkID);
 	}
+
+	public List<Park> getParkBySearch(String name) {
+		return ws1.getParkByName(name);
+	}
 	
 	public List<Shed> getAllSheds() {
 		return ws2.getShedList();
 	}
 
-	public Shed getShedByID(Integer parkID) {
-		return ws2.getShedById(parkID);
+	public Shed getShedByID(Integer shedID) {
+		return ws2.getShedById(shedID);
+	}
+
+	public List<Shed> getShedBySearch(String name) {
+		return ws2.getShedByName(name);
 	}
 
 	public void postReview(Integer userId, Review review) {

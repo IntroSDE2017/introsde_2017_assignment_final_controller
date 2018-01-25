@@ -27,5 +27,10 @@ public class ShedLogicTest {
 		Shed result = al.getShedByID(1);
 		assertEquals("SERRISTORI ALFREDO", result.getNome());
 	}
+	@Test
+	public void testGetKnownShedByName() {
+		List<Shed> result = al.getShedBySearch("BOLZANO");
+		assertTrue(result.size()>0);
+	}
 
 }

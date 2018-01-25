@@ -29,10 +29,12 @@ public class ObjectFactory {
     private final static QName _GetParkList_QNAME = new QName("http://soap.parks.APP1.introsde/", "getParkList");
     private final static QName _AddPark_QNAME = new QName("http://soap.parks.APP1.introsde/", "addPark");
     private final static QName _UpdateParkResponse_QNAME = new QName("http://soap.parks.APP1.introsde/", "updateParkResponse");
+    private final static QName _GetParkByNameResponse_QNAME = new QName("http://soap.parks.APP1.introsde/", "getParkByNameResponse");
     private final static QName _GetHelloWorldAsString_QNAME = new QName("http://soap.parks.APP1.introsde/", "getHelloWorldAsString");
     private final static QName _GetParkListResponse_QNAME = new QName("http://soap.parks.APP1.introsde/", "getParkListResponse");
     private final static QName _GetHelloWorldAsStringResponse_QNAME = new QName("http://soap.parks.APP1.introsde/", "getHelloWorldAsStringResponse");
     private final static QName _AddParkResponse_QNAME = new QName("http://soap.parks.APP1.introsde/", "addParkResponse");
+    private final static QName _GetParkByName_QNAME = new QName("http://soap.parks.APP1.introsde/", "getParkByName");
     private final static QName _UpdatePark_QNAME = new QName("http://soap.parks.APP1.introsde/", "updatePark");
 
     /**
@@ -48,6 +50,14 @@ public class ObjectFactory {
      */
     public GetHelloWorldAsString createGetHelloWorldAsString() {
         return new GetHelloWorldAsString();
+    }
+
+    /**
+     * Create an instance of {@link GetParkByNameResponse }
+     * 
+     */
+    public GetParkByNameResponse createGetParkByNameResponse() {
+        return new GetParkByNameResponse();
     }
 
     /**
@@ -104,6 +114,14 @@ public class ObjectFactory {
      */
     public AddParkResponse createAddParkResponse() {
         return new AddParkResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetParkByName }
+     * 
+     */
+    public GetParkByName createGetParkByName() {
+        return new GetParkByName();
     }
 
     /**
@@ -176,6 +194,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetParkByNameResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.parks.APP1.introsde/", name = "getParkByNameResponse")
+    public JAXBElement<GetParkByNameResponse> createGetParkByNameResponse(GetParkByNameResponse value) {
+        return new JAXBElement<GetParkByNameResponse>(_GetParkByNameResponse_QNAME, GetParkByNameResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetHelloWorldAsString }{@code >}}
      * 
      */
@@ -209,6 +236,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.parks.APP1.introsde/", name = "addParkResponse")
     public JAXBElement<AddParkResponse> createAddParkResponse(AddParkResponse value) {
         return new JAXBElement<AddParkResponse>(_AddParkResponse_QNAME, AddParkResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetParkByName }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.parks.APP1.introsde/", name = "getParkByName")
+    public JAXBElement<GetParkByName> createGetParkByName(GetParkByName value) {
+        return new JAXBElement<GetParkByName>(_GetParkByName_QNAME, GetParkByName.class, null, value);
     }
 
     /**

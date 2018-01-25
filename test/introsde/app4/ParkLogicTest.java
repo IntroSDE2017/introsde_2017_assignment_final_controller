@@ -26,5 +26,10 @@ public class ParkLogicTest {
 		Park result = al.getParkByID(1);
 		assertEquals("Dolomiti di Brenta (IT3120177)", result.getParco());
 	}
+	@Test
+	public void testGetKnownParkByName() {
+		List<Park> result = al.getParkBySearch("Stelvio");
+		assertTrue(result.size()>0);
+	}
 
 }

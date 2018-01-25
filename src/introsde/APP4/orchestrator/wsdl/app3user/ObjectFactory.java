@@ -39,6 +39,7 @@ public class ObjectFactory {
     private final static QName _GetReviewList_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewList");
     private final static QName _GetReviewsOfShed_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewsOfShed");
     private final static QName _GetPlaceVisitedListResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getPlaceVisitedListResponse");
+    private final static QName _GetUserByName_QNAME = new QName("http://soap.users.APP3.introsde/", "getUserByName");
     private final static QName _GetReviewListResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewListResponse");
     private final static QName _AddPlaceVisited_QNAME = new QName("http://soap.users.APP3.introsde/", "addPlaceVisited");
     private final static QName _UpdatePlaceVisited_QNAME = new QName("http://soap.users.APP3.introsde/", "updatePlaceVisited");
@@ -64,6 +65,7 @@ public class ObjectFactory {
     private final static QName _UserPreferShedsResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "userPreferShedsResponse");
     private final static QName _GetReviewsOfParkResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getReviewsOfParkResponse");
     private final static QName _GetPlaceVisitedById_QNAME = new QName("http://soap.users.APP3.introsde/", "getPlaceVisitedById");
+    private final static QName _GetUserByNameResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "getUserByNameResponse");
     private final static QName _AddUserResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "addUserResponse");
     private final static QName _GetPlacesVisitedOfPark_QNAME = new QName("http://soap.users.APP3.introsde/", "getPlacesVisitedOfPark");
     private final static QName _UpdateUserResponse_QNAME = new QName("http://soap.users.APP3.introsde/", "updateUserResponse");
@@ -204,6 +206,14 @@ public class ObjectFactory {
      */
     public GetPlaceVisitedById createGetPlaceVisitedById() {
         return new GetPlaceVisitedById();
+    }
+
+    /**
+     * Create an instance of {@link GetUserByNameResponse }
+     * 
+     */
+    public GetUserByNameResponse createGetUserByNameResponse() {
+        return new GetUserByNameResponse();
     }
 
     /**
@@ -372,6 +382,14 @@ public class ObjectFactory {
      */
     public GetPlaceVisitedListResponse createGetPlaceVisitedListResponse() {
         return new GetPlaceVisitedListResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetUserByName }
+     * 
+     */
+    public GetUserByName createGetUserByName() {
+        return new GetUserByName();
     }
 
     /**
@@ -622,6 +640,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserByName }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "getUserByName")
+    public JAXBElement<GetUserByName> createGetUserByName(GetUserByName value) {
+        return new JAXBElement<GetUserByName>(_GetUserByName_QNAME, GetUserByName.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetReviewListResponse }{@code >}}
      * 
      */
@@ -844,6 +871,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "getPlaceVisitedById")
     public JAXBElement<GetPlaceVisitedById> createGetPlaceVisitedById(GetPlaceVisitedById value) {
         return new JAXBElement<GetPlaceVisitedById>(_GetPlaceVisitedById_QNAME, GetPlaceVisitedById.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserByNameResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.users.APP3.introsde/", name = "getUserByNameResponse")
+    public JAXBElement<GetUserByNameResponse> createGetUserByNameResponse(GetUserByNameResponse value) {
+        return new JAXBElement<GetUserByNameResponse>(_GetUserByNameResponse_QNAME, GetUserByNameResponse.class, null, value);
     }
 
     /**

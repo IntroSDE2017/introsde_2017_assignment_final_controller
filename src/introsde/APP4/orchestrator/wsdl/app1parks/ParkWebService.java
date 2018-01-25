@@ -97,4 +97,19 @@ public interface ParkWebService {
         @WebParam(name = "arg0", targetNamespace = "")
         Integer arg0);
 
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<introsde.APP4.orchestrator.wsdl.app1parks.Park>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getParkByName", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.GetParkByName")
+    @ResponseWrapper(localName = "getParkByNameResponse", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.GetParkByNameResponse")
+    @Action(input = "http://soap.parks.APP1.introsde/ParkWebService/getParkByNameRequest", output = "http://soap.parks.APP1.introsde/ParkWebService/getParkByNameResponse")
+    public List<Park> getParkByName(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
 }

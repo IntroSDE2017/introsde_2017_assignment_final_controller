@@ -42,6 +42,18 @@ public interface ShedWebService {
 
     /**
      * 
+     * @return
+     *     returns java.util.List<introsde.APP4.orchestrator.wsdl.app2shed.Shed>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getShedList", targetNamespace = "http://soap.sheds.APP2.introsde/", className = "introsde.APP4.orchestrator.wsdl.app2shed.GetShedList")
+    @ResponseWrapper(localName = "getShedListResponse", targetNamespace = "http://soap.sheds.APP2.introsde/", className = "introsde.APP4.orchestrator.wsdl.app2shed.GetShedListResponse")
+    @Action(input = "http://soap.sheds.APP2.introsde/ShedWebService/getShedListRequest", output = "http://soap.sheds.APP2.introsde/ShedWebService/getShedListResponse")
+    public List<Shed> getShedList();
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns introsde.APP4.orchestrator.wsdl.app2shed.Shed
@@ -72,14 +84,17 @@ public interface ShedWebService {
 
     /**
      * 
+     * @param arg0
      * @return
      *     returns java.util.List<introsde.APP4.orchestrator.wsdl.app2shed.Shed>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getShedList", targetNamespace = "http://soap.sheds.APP2.introsde/", className = "introsde.APP4.orchestrator.wsdl.app2shed.GetShedList")
-    @ResponseWrapper(localName = "getShedListResponse", targetNamespace = "http://soap.sheds.APP2.introsde/", className = "introsde.APP4.orchestrator.wsdl.app2shed.GetShedListResponse")
-    @Action(input = "http://soap.sheds.APP2.introsde/ShedWebService/getShedListRequest", output = "http://soap.sheds.APP2.introsde/ShedWebService/getShedListResponse")
-    public List<Shed> getShedList();
+    @RequestWrapper(localName = "getShedByName", targetNamespace = "http://soap.sheds.APP2.introsde/", className = "introsde.APP4.orchestrator.wsdl.app2shed.GetShedByName")
+    @ResponseWrapper(localName = "getShedByNameResponse", targetNamespace = "http://soap.sheds.APP2.introsde/", className = "introsde.APP4.orchestrator.wsdl.app2shed.GetShedByNameResponse")
+    @Action(input = "http://soap.sheds.APP2.introsde/ShedWebService/getShedByNameRequest", output = "http://soap.sheds.APP2.introsde/ShedWebService/getShedByNameResponse")
+    public List<Shed> getShedByName(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
 }

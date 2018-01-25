@@ -106,10 +106,17 @@ public class UserLogicTest {
 		}
 	}
 	
+	@Test
+	public void test07GetKnownUserByName() {
+		java.util.List<User> result = al.getUserByName("TEST");
+		assertTrue(result.size()>0);
+	}
+	
 	@Test(expected = com.sun.xml.ws.fault.ServerSOAPFaultException.class)
 	public void test09DeleteUser() {
 		al.deleteUser(userID);
 		al.getUser(userID);
 	}
+	
 
 }

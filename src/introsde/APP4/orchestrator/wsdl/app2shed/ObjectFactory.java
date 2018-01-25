@@ -26,8 +26,10 @@ public class ObjectFactory {
 
     private final static QName _UpdateShed_QNAME = new QName("http://soap.sheds.APP2.introsde/", "updateShed");
     private final static QName _GetShedListResponse_QNAME = new QName("http://soap.sheds.APP2.introsde/", "getShedListResponse");
+    private final static QName _GetShedByName_QNAME = new QName("http://soap.sheds.APP2.introsde/", "getShedByName");
     private final static QName _GetShedList_QNAME = new QName("http://soap.sheds.APP2.introsde/", "getShedList");
     private final static QName _GetShedById_QNAME = new QName("http://soap.sheds.APP2.introsde/", "getShedById");
+    private final static QName _GetShedByNameResponse_QNAME = new QName("http://soap.sheds.APP2.introsde/", "getShedByNameResponse");
     private final static QName _AddShed_QNAME = new QName("http://soap.sheds.APP2.introsde/", "addShed");
     private final static QName _AddShedResponse_QNAME = new QName("http://soap.sheds.APP2.introsde/", "addShedResponse");
     private final static QName _UpdateShedResponse_QNAME = new QName("http://soap.sheds.APP2.introsde/", "updateShedResponse");
@@ -46,6 +48,14 @@ public class ObjectFactory {
      */
     public GetShedList createGetShedList() {
         return new GetShedList();
+    }
+
+    /**
+     * Create an instance of {@link GetShedByName }
+     * 
+     */
+    public GetShedByName createGetShedByName() {
+        return new GetShedByName();
     }
 
     /**
@@ -97,6 +107,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetShedByNameResponse }
+     * 
+     */
+    public GetShedByNameResponse createGetShedByNameResponse() {
+        return new GetShedByNameResponse();
+    }
+
+    /**
      * Create an instance of {@link GetShedById }
      * 
      */
@@ -131,6 +149,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetShedByName }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.sheds.APP2.introsde/", name = "getShedByName")
+    public JAXBElement<GetShedByName> createGetShedByName(GetShedByName value) {
+        return new JAXBElement<GetShedByName>(_GetShedByName_QNAME, GetShedByName.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetShedList }{@code >}}
      * 
      */
@@ -146,6 +173,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.sheds.APP2.introsde/", name = "getShedById")
     public JAXBElement<GetShedById> createGetShedById(GetShedById value) {
         return new JAXBElement<GetShedById>(_GetShedById_QNAME, GetShedById.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetShedByNameResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.sheds.APP2.introsde/", name = "getShedByNameResponse")
+    public JAXBElement<GetShedByNameResponse> createGetShedByNameResponse(GetShedByNameResponse value) {
+        return new JAXBElement<GetShedByNameResponse>(_GetShedByNameResponse_QNAME, GetShedByNameResponse.class, null, value);
     }
 
     /**

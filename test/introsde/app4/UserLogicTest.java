@@ -58,7 +58,7 @@ public class UserLogicTest {
 		Review review = new Review();
 		review.setReview("Test Review");
 		review.setVote(4);
-		Integer parkReviewed = new Random().nextInt(20) + 1;
+		Integer parkReviewed = new Random().nextInt(470) + 1;
 		review.setIdPark(parkReviewed);
 		
 		int n = al.getParkReviews(parkReviewed).size();
@@ -74,7 +74,7 @@ public class UserLogicTest {
 	@Test
 	public void test05SubmitVisits() {
 		PlaceVisited visit = new PlaceVisited();
-		Integer parkVisited = new Random().nextInt(20) + 1;
+		Integer parkVisited = new Random().nextInt(100) + 1;
 		visit.setIdPark(parkVisited);
 		visit.setVote(1);
 		

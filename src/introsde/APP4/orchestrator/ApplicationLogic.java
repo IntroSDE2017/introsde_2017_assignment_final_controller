@@ -1,6 +1,7 @@
 package introsde.APP4.orchestrator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -170,18 +171,19 @@ public class ApplicationLogic {
 		int randomChanceToSelectParks = (user.getPreference().isPreferenceParks()) ? 50 : 20;			//Load his preferences
 		int randomChanceToSelectSheds = (user.getPreference().isPreferenceSheds()) ? 50 : 20;			//More chance to select it's preferred type
 		int random = new Random().nextInt(randomChanceToSelectParks+randomChanceToSelectSheds) + 1;		//Get the random number
+		List<Park> parks = ws1.getParkList();
+		List<Shed> sheds = ws2.getShedList();
 		
 		SuggestedItem suggestion1 = new SuggestedItem();
 		if (random<=(randomChanceToSelectParks)) {														//Wins Parks
-			List<Park> parks = ws1.getParkList();
 			Park selectedPark = parks.get( new Random().nextInt(parks.size()) );
 			suggestion1.setPark(selectedPark);			
 		}
 		else {																							//Wins Sheds
-			List<Shed> sheds = ws2.getShedList();
 			Shed selectedShed = sheds.get( new Random().nextInt(sheds.size()) );
 			suggestion1.setShed(selectedShed);
 		}
+		suggestion1.setReason("You might like");
 		suggestion.getSuggestedItems().add(suggestion1);
 		
 		SuggestedItem suggestion2 = new SuggestedItem();
@@ -208,8 +210,68 @@ public class ApplicationLogic {
 		else {
 			suggestion3.setShed( ws2.getShedById(visit2.getIdShed())); 
 		}
+		suggestion2.setReason("Popular locations");
+		suggestion3.setReason("Popular locations");
 		suggestion.getSuggestedItems().add(suggestion2);
 		suggestion.getSuggestedItems().add(suggestion3);
+		
+		SuggestedItem suggestion4 = new SuggestedItem();
+		SuggestedItem suggestion5 = new SuggestedItem();
+		List<Review> reviews = ws3.getReviewsOfUser(userID);
+		List<Park> selectedParks = new ArrayList<Park>();
+		List<Shed> selectedSheds = new ArrayList<Shed>();
+		while (reviews.size()>0) {
+			Review review = reviews.get(reviews.size()-1);
+			if(review.getIdPark() != null) {
+				Park reviewedPark = ws1.getParkById(review.getIdPark());
+				List<String> placesList = Arrays.asList(reviewedPark.getComuni().split(",[ ]*"));
+				for (Park park : parks) {
+					for (String source : placesList) {
+						if(park.getComuni().toLowerCase().contains(source.toLowerCase())) {
+							selectedParks.add(park);
+						}
+					}
+				}
+			}
+			else if(review.getIdShed() != null) {
+				Shed reviewedShed = ws2.getShedById(review.getIdShed());
+				String sector = reviewedShed.getSettoreAlpino();
+				Float quota = reviewedShed.getQuota();
+				for (Shed shed : sheds) {
+					if(shed.getSettoreAlpino().toLowerCase().contains(sector.toLowerCase())) {
+						if( Math.abs(shed.getQuota()-quota) <300 ) {
+							selectedSheds.add(shed);
+						}
+					}
+				}
+			}
+			reviews.remove(review);
+		}
+		suggestion4.setReason("Based on your reviews");
+		suggestion5.setReason("Based on your reviews");
+		if (selectedParks.size()>0) {
+			Park randomPark = selectedParks.get(new Random().nextInt(selectedParks.size()));
+			suggestion4.setPark( randomPark );
+			selectedParks.remove(randomPark);
+			suggestion.getSuggestedItems().add(suggestion4);
+		}
+		else if (selectedSheds.size()>0) {
+			Shed randomShed = selectedSheds.get(new Random().nextInt(selectedSheds.size()));
+			suggestion4.setShed( randomShed );
+			selectedSheds.remove( randomShed );
+			suggestion.getSuggestedItems().add(suggestion4);
+		}
+		
+		if (selectedSheds.size()>0) {
+			Shed randomShed = selectedSheds.get(new Random().nextInt(selectedSheds.size()));
+			suggestion5.setShed( randomShed );
+			suggestion.getSuggestedItems().add(suggestion5);
+		}
+		else if (selectedParks.size()>0) {
+			Park randomPark = selectedParks.get(new Random().nextInt(selectedParks.size()));
+			suggestion5.setPark( randomPark );
+			suggestion.getSuggestedItems().add(suggestion5);
+		}
 		
 		return suggestion;
 	}

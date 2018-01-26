@@ -21,16 +21,16 @@ import introsde.APP4.orchestrator.wsdl.app3user.User;
 public interface NaturalTuristWebService{
     
 	@WebMethod List<Park> getAllParks();
-	@WebMethod List<Park> searchPark(String name);
+	@WebMethod List<Park> searchParks(String name);
 	@WebMethod Park searchPark(Integer id);
 	@WebMethod List<Shed> getAllSheds();
-	@WebMethod List<Shed> searchShed(String name);
+	@WebMethod List<Shed> searchSheds(String name);
 	@WebMethod Shed searchShed(Integer id);
 	
 	@WebMethod Integer registerUser(User user);
 	@WebMethod List<User> getAllUsers();
 	@WebMethod User searchUser(Integer userId);
-	@WebMethod List<User> searchUser(String name);
+	@WebMethod List<User> searchUsers(String name);
 	@WebMethod void setUserPreference(Integer userId, boolean parks, boolean sheds);
 	
 	@WebMethod void postReview(Integer userId, Review review);

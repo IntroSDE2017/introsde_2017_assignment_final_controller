@@ -1,6 +1,5 @@
 package introsde.APP4.orchestrator.soap;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebService;
@@ -15,7 +14,7 @@ import introsde.APP4.orchestrator.wsdl.app3user.User;
 
 
 //Service Implementation
-@WebService(endpointInterface = "introsde.APP3.users.soap.UserWebService")
+@WebService(endpointInterface = "introsde.APP4.orchestrator.soap.NaturalTuristWebService")
 public class NaturalTuristImpl implements NaturalTuristWebService{
 
 	private ApplicationLogic al = new ApplicationLogic();
@@ -26,7 +25,7 @@ public class NaturalTuristImpl implements NaturalTuristWebService{
 	}
 
 	@Override
-	public List<Park> searchPark(String name) {
+	public List<Park> searchParks(String name) {
 		return al.getParkBySearch(name);
 	}
 
@@ -41,7 +40,7 @@ public class NaturalTuristImpl implements NaturalTuristWebService{
 	}
 
 	@Override
-	public List<Shed> searchShed(String name) {
+	public List<Shed> searchSheds(String name) {
 		return al.getShedBySearch(name);
 	}
 
@@ -66,13 +65,13 @@ public class NaturalTuristImpl implements NaturalTuristWebService{
 	}
 
 	@Override
-	public List<User> searchUser(String name) {
+	public List<User> searchUsers(String name) {
 		return al.getUserByName(name);
 	}
 
 	@Override
 	public void setUserPreference(Integer userId, boolean parks, boolean sheds) {
-		al.setUserPreference(userId, parks, parks);
+		al.setUserPreference(userId, parks, sheds);
 		
 	}
 

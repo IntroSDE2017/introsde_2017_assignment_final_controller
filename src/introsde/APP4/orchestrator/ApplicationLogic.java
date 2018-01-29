@@ -148,7 +148,7 @@ public class ApplicationLogic {
 		}
 		Double rating = 0.0;
 		for(PlaceVisited visit : visits) {
-			rating += visit.getVote();
+			rating += Math.max(0, visit.getVote());
 		}
 		rating = rating/visits.size();
 		return rating;
@@ -169,7 +169,7 @@ public class ApplicationLogic {
 		}
 		Double rating = 0.0;
 		for(PlaceVisited visit : visits) {
-			rating += visit.getVote();
+			rating += Math.max(0, visit.getVote());
 		}
 		rating = rating/visits.size();
 		return rating;

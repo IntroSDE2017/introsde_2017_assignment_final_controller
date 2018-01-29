@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="parco" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="provincie" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="provvedimento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="superficie" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -47,7 +48,8 @@ import javax.xml.bind.annotation.XmlType;
     "nome",
     "parco",
     "provincie",
-    "provvedimento"
+    "provvedimento",
+    "superficie"
 })
 public class Park {
 
@@ -62,6 +64,7 @@ public class Park {
     protected String parco;
     protected String provincie;
     protected String provvedimento;
+    protected Float superficie;
 
     /**
      * Gets the value of the altreInformazioni property.
@@ -325,6 +328,30 @@ public class Park {
      */
     public void setProvvedimento(String value) {
         this.provvedimento = value;
+    }
+
+    /**
+     * Gets the value of the superficie property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Float }
+     *     
+     */
+    public Float getSuperficie() {
+        return superficie;
+    }
+
+    /**
+     * Sets the value of the superficie property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Float }
+     *     
+     */
+    public void setSuperficie(Float value) {
+        this.superficie = value;
     }
 
 }

@@ -66,7 +66,6 @@ public class OpenWeatherMap {
 	
 	public Boolean getOkWeatherTomorrow() {
 		java.util.List<Weather> weathers = getTomorrowForecast().getWeather();
-		System.out.println(weathers + " " + weathers.size());
 		for (Weather weather : weathers) {
 			if (
 					(weather.getId()>=800 && weather.getId()<=803) ||
@@ -88,11 +87,12 @@ public class OpenWeatherMap {
 	public introsde.APP4.orchestrator.openweather.entities.List getTomorrowForecast() {
 		if(data == null) getForecast();
 
-		Date tomorrow = getTomorrow(10);
+		Date tomorrowEarly = getTomorrow(9);
+		Date tomorrowLate = getTomorrow(12);
 		
 		for (List prevision : data.getList()) {
-			System.out.println(" Matching "+new Date((long)prevision.getDt()*1000)+" to "+tomorrow);
-			if(tomorrow.equals( new Date((long)prevision.getDt()*1000) ) ) {
+			Date previsionDate = new Date((long)prevision.getDt()*1000);
+			if( previsionDate.after(tomorrowEarly) && previsionDate.before(tomorrowLate) ) {
 				return prevision;
 			}
 		}

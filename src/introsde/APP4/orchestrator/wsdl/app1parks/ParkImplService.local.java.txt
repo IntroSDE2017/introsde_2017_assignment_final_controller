@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ParkImplService", targetNamespace = "http://soap.parks.APP1.introsde/", wsdlLocation = "https://introsde-final-server1.herokuapp.com/parks?wsdl")
+@WebServiceClient(name = "ParkImplService", targetNamespace = "http://soap.parks.APP1.introsde/", wsdlLocation = "http://localhost:6900/app1/park?wsdl")
 public class ParkImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class ParkImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://introsde-final-server1.herokuapp.com/parks?wsdl");
+            url = new URL("http://localhost:6900/app1/park?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

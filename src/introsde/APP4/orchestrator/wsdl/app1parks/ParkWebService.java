@@ -27,18 +27,6 @@ public interface ParkWebService {
 
     /**
      * 
-     * @return
-     *     returns java.util.List<introsde.APP4.orchestrator.wsdl.app1parks.Park>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getParkList", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.GetParkList")
-    @ResponseWrapper(localName = "getParkListResponse", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.GetParkListResponse")
-    @Action(input = "http://soap.parks.APP1.introsde/ParkWebService/getParkListRequest", output = "http://soap.parks.APP1.introsde/ParkWebService/getParkListResponse")
-    public List<Park> getParkList();
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns java.lang.String
@@ -51,21 +39,6 @@ public interface ParkWebService {
     public String getHelloWorldAsString(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns introsde.APP4.orchestrator.wsdl.app1parks.Park
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addPark", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.AddPark")
-    @ResponseWrapper(localName = "addParkResponse", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.AddParkResponse")
-    @Action(input = "http://soap.parks.APP1.introsde/ParkWebService/addParkRequest", output = "http://soap.parks.APP1.introsde/ParkWebService/addParkResponse")
-    public Park addPark(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Park arg0);
 
     /**
      * 
@@ -111,5 +84,32 @@ public interface ParkWebService {
     public List<Park> getParkByName(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns introsde.APP4.orchestrator.wsdl.app1parks.Park
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addPark", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.AddPark")
+    @ResponseWrapper(localName = "addParkResponse", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.AddParkResponse")
+    @Action(input = "http://soap.parks.APP1.introsde/ParkWebService/addParkRequest", output = "http://soap.parks.APP1.introsde/ParkWebService/addParkResponse")
+    public Park addPark(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Park arg0);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<introsde.APP4.orchestrator.wsdl.app1parks.Park>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getParkList", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.GetParkList")
+    @ResponseWrapper(localName = "getParkListResponse", targetNamespace = "http://soap.parks.APP1.introsde/", className = "introsde.APP4.orchestrator.wsdl.app1parks.GetParkListResponse")
+    @Action(input = "http://soap.parks.APP1.introsde/ParkWebService/getParkListRequest", output = "http://soap.parks.APP1.introsde/ParkWebService/getParkListResponse")
+    public List<Park> getParkList();
 
 }

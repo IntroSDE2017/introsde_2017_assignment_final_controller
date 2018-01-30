@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ShedImplService", targetNamespace = "http://soap.sheds.APP2.introsde/", wsdlLocation = "https://introsde-final-server1.herokuapp.com/sheds?wsdl")
+@WebServiceClient(name = "ShedImplService", targetNamespace = "http://soap.sheds.APP2.introsde/", wsdlLocation = "http://localhost:6900/app2/shed?wsdl")
 public class ShedImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class ShedImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://introsde-final-server1.herokuapp.com/sheds?wsdl");
+            url = new URL("http://localhost:6900/app2/shed?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

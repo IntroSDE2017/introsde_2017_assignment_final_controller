@@ -204,11 +204,12 @@ public class ApplicationLogic {
 		
 		SuggestedItem suggestion2 = new SuggestedItem();
 		SuggestedItem suggestion3 = new SuggestedItem();
-		List<RankedVisit> rankedVisits = ws3.getMostRankedVisits();
-		int secondRank = rankedVisits.get(1).getSum();
-		for (RankedVisit visit : rankedVisits) {
-			if (visit.getSum() < secondRank/2) {
-				rankedVisits.remove(visit);
+		List<RankedVisit> rawRankedVisits = ws3.getMostRankedVisits();
+		List<RankedVisit> rankedVisits = new ArrayList<RankedVisit>();
+		int secondRank = rawRankedVisits.get(1).getSum();
+		for (RankedVisit visit : rawRankedVisits) {
+			if (visit.getSum() >= secondRank/2) {
+				rankedVisits.add(visit);
 			}
 		}
 		RankedVisit visit1 = rankedVisits.get( new Random().nextInt(rankedVisits.size()) );

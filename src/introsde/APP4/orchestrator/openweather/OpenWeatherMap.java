@@ -87,7 +87,7 @@ public class OpenWeatherMap {
 	public introsde.APP4.orchestrator.openweather.entities.List getTomorrowForecast() {
 		if(data == null) getForecast();
 
-		Date tomorrowEarly = getTomorrow(9);
+		Date tomorrowEarly = getTomorrow(8);
 		Date tomorrowLate = getTomorrow(12);
 		
 		for (List prevision : data.getList()) {

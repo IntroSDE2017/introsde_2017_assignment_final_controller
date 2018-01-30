@@ -41,7 +41,7 @@ public class OpenWeatherMap {
 	}
 	
 	public boolean isSnowTomorrow() {
-		return getTomorrowForecast().getSnow()!=null;
+		return getTomorrowForecast().getSnow()!=null && getTomorrowForecast().getSnow().get3h()>1;
 	}
 	
 	public Double getWindTomorrow() {
